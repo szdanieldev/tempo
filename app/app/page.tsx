@@ -7,5 +7,5 @@ export default async function AgendaPage() {
   const timezone = owner.orgId && !owner.isDemo ? await getOrganizationTimezone(owner.orgId) : "Europe/Budapest"
   const today = getLocalDateString(new Date(), timezone)
   const data = await getAgendaData(today)
-  return <AgendaView initialAppointments={data.appointments} services={data.services} today={today} timezone={data.timezone} demo={data.demo} />
+  return <AgendaView initialAppointments={data.appointments} services={data.services} staffMembers={data.staffMembers} currentStaffId={data.currentStaffId} canAssignStaff={data.canAssignStaff} cacheNamespace={owner.orgId ?? "demo"} today={today} timezone={data.timezone} demo={data.demo} />
 }

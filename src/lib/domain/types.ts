@@ -1,4 +1,5 @@
-export type AppointmentStatus = "pending" | "confirmed" | "cancelled" | "completed"
+export type AppointmentStatus =
+  "pending" | "confirmed" | "cancelled" | "completed"
 
 export type AgendaAppointment = {
   id: string
@@ -12,7 +13,11 @@ export type AgendaAppointment = {
   endsAt: string
   status: AppointmentStatus
   isPaid: boolean
+  staffId?: string
+  staffName?: string | null
 }
+
+export type StaffSummary = { id: string; name: string }
 
 export type ServiceSummary = {
   id: string
