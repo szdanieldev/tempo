@@ -27,6 +27,8 @@ test("slug suggestions transliterate Hungarian names and validation rejects rese
 test("tenant host parsing supports production and wildcard localhost hosts", () => {
   assert.equal(getTenantSlugFromHost("edit-fodraszat.idopontfoglalo.hu", "idopontfoglalo.hu"), "edit-fodraszat")
   assert.equal(getTenantSlugFromHost("edit-fodraszat.localhost:3000", "localhost:3000"), "edit-fodraszat")
+  assert.equal(getTenantSlugFromHost("edit-fodraszat.localhost:3000", "dev-tunnel.example"), "edit-fodraszat")
+  assert.equal(getTenantSlugFromHost("edit-fodraszat.localhost", "dev-tunnel.example"), "edit-fodraszat")
   assert.equal(getTenantSlugFromHost("idopontfoglalo.hu", "idopontfoglalo.hu"), null)
   assert.equal(getTenantSlugFromHost("shop.other.idopontfoglalo.hu", "idopontfoglalo.hu"), null)
 })

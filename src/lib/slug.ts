@@ -33,6 +33,12 @@ export function getTenantSlugFromHost(host: string, rootDomain = process.env.ROO
   const normalizedHost = host.toLowerCase().split(",")[0]?.trim().replace(/\.$/, "") ?? ""
   const normalizedRoot = rootDomain.toLowerCase().trim().replace(/^https?:\/\//, "").replace(/\/$/, "").replace(/\.$/, "")
   if (!normalizedHost || !normalizedRoot || normalizedHost === normalizedRoot) return null
+
+  if (process.env.NODE_ENV !== "production") {
+    const localMatch = normalizedHost.match(/^([a-z0-9](?:[a-z0-9-]{1,38}[a-z0-9]))\.localhost(?::\d+)?$/)
+    if (localMatch?.[1]) return validateSlug(localMatch[1]).valid ? localMatch[1] : null
+  }
+
   const suffix = `.${normalizedRoot}`
   if (!normalizedHost.endsWith(suffix)) return null
   const subdomain = normalizedHost.slice(0, -suffix.length)

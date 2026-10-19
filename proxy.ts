@@ -23,6 +23,10 @@ const clerkProxy = clerkMiddleware(async (auth, request) => {
       signInUrl.searchParams.set("redirect_url", request.url)
       return NextResponse.redirect(signInUrl)
     }
+
+    if (request.nextUrl.pathname.startsWith("/app") && !session.orgId) {
+      return NextResponse.redirect(new URL("/setup", request.url))
+    }
   }
 
   return tenantResponse

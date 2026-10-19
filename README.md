@@ -7,10 +7,10 @@ Tempo is a Hungarian-first appointment booking app by OneHorizon. The owner app 
 1. Install Node.js 20+ and pnpm, then run `pnpm install`.
 2. Copy `.env.example` to `.env.local` and fill the required keys below. Without external keys, the app runs in a local demo mode with sample data.
 3. Apply the SQL files in `supabase/migrations/` in filename order in the Supabase SQL editor, or run `supabase db push` with the Supabase CLI linked to your project.
-4. In Clerk, enable Organizations, configure the `org:admin` and `org:member` roles, and enable the Clerk integration for your Supabase project so Clerk session tokens are accepted by Supabase Auth. Set the Clerk organization slug as the tenant subdomain.
+4. In Clerk, enable Organizations and organization slugs, configure the `org:admin` and `org:member` roles, and enable the Clerk integration for your Supabase project so Clerk session tokens are accepted by Supabase Auth. In Clerk's organization settings, allow personal accounts and turn off automatic creation of the first organization. Organization creation happens in Tempo's `/setup` flow after sign-up. Keep organization creation enabled for the application so that flow can create one on the user's behalf.
 5. Run `pnpm dev`, open `http://localhost:3000`, and sign up. The local demo tenant is available at `http://editfodraszat.localhost:3000`.
 
-Wildcard subdomains use the special `.localhost` loopback domain; no hosts-file entry is needed in current browsers. Set both `ROOT_DOMAIN` and `NEXT_PUBLIC_ROOT_DOMAIN` to `localhost:3000` for local development. Keep the port in those values. API calls remain on the tenant host and carry the organization slug in their validated request data.
+Wildcard subdomains use the special `.localhost` loopback domain; no hosts-file entry is needed in current browsers. For local development set `APP_URL=http://localhost:3000`, `ROOT_DOMAIN=localhost:3000`, and `NEXT_PUBLIC_ROOT_DOMAIN=localhost:3000`. Open the owner app at `http://localhost:3000` and a tenant page at `http://editfodraszat.localhost:3000`. The app recognizes `.localhost` separately, even if the environment still has a tunnel or production root domain configured. API calls remain on the tenant host and carry the organization slug in their validated request data.
 
 ## Environment variables
 
