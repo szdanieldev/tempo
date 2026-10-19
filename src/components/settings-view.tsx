@@ -1,4 +1,5 @@
 "use client"
+import { Button } from "@/components/ui/button"
 
 import { useState } from "react"
 import { useTranslations } from "next-intl"
@@ -308,14 +309,14 @@ export function SettingsView({
                   : t("stripeNotConnected")}
               </p>
               {!stripeConnectEnabled && (
-                <button
+                <Button
                   type="button"
                   disabled={paymentBusy}
                   onClick={() => void openStripe("/api/stripe/connect")}
                   className="mt-3 min-h-12 rounded-full bg-[#416e7e] px-5 text-sm font-semibold text-white disabled:opacity-50"
                 >
                   {paymentBusy ? t("working") : t("connectStripe")}
-                </button>
+                </Button>
               )}
             </div>
             <Toggle
@@ -332,7 +333,7 @@ export function SettingsView({
                 {t("subscriptionStatus", { status: subscriptionStatus })}
               </p>
               {billingAvailable && (
-                <button
+                <Button
                   type="button"
                   disabled={paymentBusy}
                   onClick={() =>
@@ -349,7 +350,7 @@ export function SettingsView({
                     : hasBillingCustomer
                       ? t("manageSubscription")
                       : t("startSubscription")}
-                </button>
+                </Button>
               )}
             </div>
             <h2 className="mt-6 mb-2 text-lg font-semibold text-[#334e55] dark:text-white">
@@ -449,12 +450,12 @@ export function SettingsView({
             </p>
           )}
           <div className="sticky bottom-24 z-10 flex justify-end py-2 lg:bottom-5">
-            <button
+            <Button
               type="submit"
               className="min-h-14 w-full rounded-full bg-[#416e7e] px-8 text-base font-semibold text-white shadow-lg sm:w-auto"
             >
               {t("save")}
-            </button>
+            </Button>
           </div>
         </form>
       )}

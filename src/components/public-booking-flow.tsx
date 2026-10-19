@@ -1,4 +1,5 @@
 "use client"
+import { Button } from "@/components/ui/button"
 
 import { useEffect, useMemo, useState } from "react"
 import Link from "next/link"
@@ -304,7 +305,7 @@ export function PublicBookingFlow({ tenant }: { tenant: PublicTenant }) {
                 </h2>
                 <div className="mt-5 space-y-3">
                   {tenant.services.map((service) => (
-                    <button
+                    <Button
                       key={service.id}
                       type="button"
                       onClick={() => {
@@ -325,18 +326,18 @@ export function PublicBookingFlow({ tenant }: { tenant: PublicTenant }) {
                       <span className="font-semibold text-[#537981] dark:text-[#c1d7d7]">
                         {money(service.priceHuf)}
                       </span>
-                    </button>
+                    </Button>
                   ))}
                 </div>
                 <div className="mt-7 flex justify-end">
-                  <button
+                  <Button
                     type="button"
                     disabled={!selectedService}
                     onClick={() => setStep(1)}
                     className="min-h-14 w-full rounded-full bg-[var(--tempo-primary)] px-7 font-semibold text-[var(--tempo-on-primary)] disabled:opacity-50 sm:w-auto"
                   >
                     {t("next")}
-                  </button>
+                  </Button>
                 </div>
               </div>
             )}
@@ -399,7 +400,7 @@ export function PublicBookingFlow({ tenant }: { tenant: PublicTenant }) {
                   ) : (
                     <div className="grid grid-cols-3 gap-2 sm:grid-cols-4">
                       {slots.map((slot) => (
-                        <button
+                        <Button
                           key={`${slot.startsAt}-${slot.staffId}`}
                           type="button"
                           onClick={() => setSelectedSlot(slot)}
@@ -409,27 +410,27 @@ export function PublicBookingFlow({ tenant }: { tenant: PublicTenant }) {
                           className={`min-h-12 rounded-xl border text-sm font-semibold transition ${selectedSlot?.startsAt === slot.startsAt ? "border-[var(--tempo-primary)] bg-[var(--tempo-primary)] text-[var(--tempo-on-primary)]" : "border-[#dce6e3] bg-white text-[#54757c] hover:border-[#6c9a99] dark:border-white/10 dark:bg-white/5 dark:text-white"}`}
                         >
                           {formatTime(slot.startsAt)}
-                        </button>
+                        </Button>
                       ))}
                     </div>
                   )}
                 </div>
                 <div className="mt-7 flex gap-3">
-                  <button
+                  <Button
                     type="button"
                     onClick={() => setStep(0)}
                     className="min-h-14 flex-1 rounded-full border border-[#dce6e3] font-semibold text-[#668084] dark:border-white/10 dark:text-white"
                   >
                     {t("back")}
-                  </button>
-                  <button
+                  </Button>
+                  <Button
                     type="button"
                     disabled={!selectedSlot || loadingSlots}
                     onClick={() => setStep(2)}
                     className="min-h-14 flex-[1.6] rounded-full bg-[var(--tempo-primary)] font-semibold text-[var(--tempo-on-primary)] disabled:opacity-50"
                   >
                     {t("next")}
-                  </button>
+                  </Button>
                 </div>
               </div>
             )}
@@ -507,22 +508,22 @@ export function PublicBookingFlow({ tenant }: { tenant: PublicTenant }) {
                       {t("paymentMethod")}
                     </legend>
                     <div className="grid grid-cols-2 gap-2">
-                      <button
+                      <Button
                         type="button"
                         onClick={() => setPaymentMethod("on_site")}
                         aria-pressed={paymentMethod === "on_site"}
                         className={`min-h-12 rounded-xl border px-3 text-sm font-semibold ${paymentMethod === "on_site" ? "border-[var(--tempo-primary)] bg-[#eff6f2] text-[var(--tempo-primary)] dark:bg-white/10" : "border-[#dce6e3] text-[#6d8386] dark:border-white/10 dark:text-[#bdcaca]"}`}
                       >
                         {t("payOnSite")}
-                      </button>
-                      <button
+                      </Button>
+                      <Button
                         type="button"
                         onClick={() => setPaymentMethod("stripe")}
                         aria-pressed={paymentMethod === "stripe"}
                         className={`min-h-12 rounded-xl border px-3 text-sm font-semibold ${paymentMethod === "stripe" ? "border-[var(--tempo-primary)] bg-[#eff6f2] text-[var(--tempo-primary)] dark:bg-white/10" : "border-[#dce6e3] text-[#6d8386] dark:border-white/10 dark:text-[#bdcaca]"}`}
                       >
                         {t("onlinePay")}
-                      </button>
+                      </Button>
                     </div>
                   </fieldset>
                 )}
@@ -538,20 +539,20 @@ export function PublicBookingFlow({ tenant }: { tenant: PublicTenant }) {
                   {t("privacy")}
                 </p>
                 <div className="mt-7 flex gap-3">
-                  <button
+                  <Button
                     type="button"
                     onClick={() => setStep(1)}
                     className="min-h-14 flex-1 rounded-full border border-[#dce6e3] font-semibold text-[#668084] dark:border-white/10 dark:text-white"
                   >
                     {t("back")}
-                  </button>
-                  <button
+                  </Button>
+                  <Button
                     type="submit"
                     disabled={busy}
                     className="min-h-14 flex-[1.8] rounded-full bg-[var(--tempo-primary)] font-semibold text-[var(--tempo-on-primary)] disabled:opacity-50"
                   >
                     {busy ? common("loading") : t("confirm")}
-                  </button>
+                  </Button>
                 </div>
               </form>
             )}

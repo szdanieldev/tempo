@@ -1,4 +1,5 @@
 "use client"
+import { Button } from "@/components/ui/button"
 
 import { useCallback, useEffect, useMemo, useState } from "react"
 import { addDays } from "date-fns"
@@ -344,24 +345,24 @@ export function AgendaView({
         </div>
         <div className="flex items-center gap-2">
           <div className="inline-flex rounded-full border border-[#dfe8e5] bg-white p-1 dark:border-white/10 dark:bg-white/5">
-            <button
+            <Button
               type="button"
               onClick={() => setView("day")}
               aria-pressed={view === "day"}
               className={`min-h-10 rounded-full px-4 text-sm font-medium ${view === "day" ? "bg-[#eaf2ef] text-[#416d76] dark:bg-white/10 dark:text-white" : "text-[#7c8c8d]"}`}
             >
               {navigation("today")}
-            </button>
-            <button
+            </Button>
+            <Button
               type="button"
               onClick={() => setView("week")}
               aria-pressed={view === "week"}
               className={`min-h-10 rounded-full px-4 text-sm font-medium ${view === "week" ? "bg-[#eaf2ef] text-[#416d76] dark:bg-white/10 dark:text-white" : "text-[#7c8c8d]"}`}
             >
               {navigation("week")}
-            </button>
+            </Button>
           </div>
-          <button
+          <Button
             type="button"
             onClick={() => openAdd()}
             className="hidden min-h-12 items-center gap-2 rounded-full bg-[#416e7e] px-5 text-sm font-semibold text-white shadow-sm hover:bg-[#355f6d] sm:inline-flex"
@@ -370,13 +371,13 @@ export function AgendaView({
               +
             </span>
             {t("addAppointment")}
-          </button>
+          </Button>
         </div>
       </div>
 
       <div className="mb-5 rounded-[1.6rem] border border-[#e3ebe8] bg-white p-4 shadow-[0_4px_20px_rgba(45,75,78,.035)] sm:p-6 dark:border-white/10 dark:bg-[#1b3037]">
         <div className="mb-5 flex items-center justify-between gap-3">
-          <button
+          <Button
             type="button"
             onClick={() =>
               setSelectedDate((date) =>
@@ -387,7 +388,7 @@ export function AgendaView({
             aria-label={t("previousDay")}
           >
             ‹
-          </button>
+          </Button>
           <div className="text-center">
             <div className="text-lg font-semibold text-[#304a52] capitalize dark:text-white">
               {dayLabel}
@@ -399,7 +400,7 @@ export function AgendaView({
               )}
             </div>
           </div>
-          <button
+          <Button
             type="button"
             onClick={() =>
               setSelectedDate((date) =>
@@ -410,12 +411,12 @@ export function AgendaView({
             aria-label={t("nextDay")}
           >
             ›
-          </button>
+          </Button>
         </div>
         {view === "week" && (
           <div className="mb-5 grid grid-cols-7 gap-1 rounded-2xl bg-[#f6f9f7] p-1 dark:bg-white/5">
             {weekDays.map((date) => (
-              <button
+              <Button
                 key={date}
                 type="button"
                 onClick={() => setSelectedDate(date)}
@@ -425,7 +426,7 @@ export function AgendaView({
                 <span className="mt-1 block text-sm font-semibold">
                   {date.slice(-2)}
                 </span>
-              </button>
+              </Button>
             ))}
           </div>
         )}
@@ -503,7 +504,7 @@ export function AgendaView({
                         className="relative border-t border-dashed border-[#e7edeb] dark:border-white/10"
                       >
                         {appointment ? (
-                          <button
+                          <Button
                             type="button"
                             onClick={() => setDetail(appointment)}
                             className="relative -mt-2 flex min-h-[58px] w-full items-center gap-3 rounded-2xl border border-[#dfeae5] bg-[#f0f6f2] px-3 py-2 text-left transition hover:border-[#b8d0c7] hover:bg-[#eaf2ed] focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none dark:border-white/10 dark:bg-[#263e3e] dark:hover:bg-[#2c4847]"
@@ -526,9 +527,9 @@ export function AgendaView({
                                 {t("paid")}
                               </span>
                             )}
-                          </button>
+                          </Button>
                         ) : (
-                          <button
+                          <Button
                             type="button"
                             onClick={() => openAdd(time, staff.id)}
                             className="group flex min-h-[58px] w-full items-center justify-between rounded-xl px-2 text-left focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
@@ -542,7 +543,7 @@ export function AgendaView({
                             <span className="flex size-8 items-center justify-center rounded-full text-lg text-transparent transition group-hover:bg-[#edf4f0] group-hover:text-[#5d8983] group-focus-visible:bg-[#edf4f0] group-focus-visible:text-[#5d8983] dark:group-hover:bg-white/5">
                               +
                             </span>
-                          </button>
+                          </Button>
                         )}
                       </div>
                     )
@@ -562,14 +563,14 @@ export function AgendaView({
           {message}
         </div>
       )}
-      <button
+      <Button
         type="button"
         onClick={() => openAdd()}
         aria-label={t("addAppointment")}
         className="fixed right-5 bottom-[calc(env(safe-area-inset-bottom)+5.8rem)] z-30 flex size-16 items-center justify-center rounded-full bg-[#416e7e] text-3xl font-light text-white shadow-[0_10px_28px_rgba(41,87,100,.35)] transition hover:scale-105 focus-visible:ring-4 focus-visible:ring-[#91b4bb]/50 focus-visible:outline-none sm:right-8 lg:right-10 lg:bottom-8"
       >
         <span aria-hidden="true">+</span>
-      </button>
+      </Button>
 
       {draft && (
         <div
@@ -598,14 +599,14 @@ export function AgendaView({
                 </h2>
                 <p className="mt-1 text-sm text-[#829193]">{q("pastNotice")}</p>
               </div>
-              <button
+              <Button
                 type="button"
                 onClick={() => setDraft(null)}
                 className="flex size-11 items-center justify-center rounded-full bg-[#f1f5f3] text-xl text-[#6a8083] dark:bg-white/5 dark:text-white"
                 aria-label={common("close")}
               >
                 ×
-              </button>
+              </Button>
             </div>
             <div className="space-y-4">
               <label className="block">
@@ -783,20 +784,20 @@ export function AgendaView({
               </p>
             )}
             <div className="mt-6 flex gap-3">
-              <button
+              <Button
                 type="button"
                 onClick={() => setDraft(null)}
                 className="min-h-14 flex-1 rounded-full border border-[#dce6e3] px-5 font-semibold text-[#668084] dark:border-white/10 dark:text-[#c4d1d1]"
               >
                 {q("cancel")}
-              </button>
-              <button
+              </Button>
+              <Button
                 type="submit"
                 disabled={saving}
                 className="min-h-14 flex-[1.6] rounded-full bg-[#416e7e] px-5 font-semibold text-white shadow-sm disabled:opacity-60"
               >
                 {saving ? q("saving") : q("save")}
-              </button>
+              </Button>
             </div>
           </form>
         </div>
@@ -813,14 +814,14 @@ export function AgendaView({
               {q("overlap")}
             </p>
             <div className="mt-5 flex gap-3">
-              <button
+              <Button
                 type="button"
                 onClick={() => setOverlapPrompt(false)}
                 className="min-h-12 flex-1 rounded-full border border-[#dce6e3] font-semibold text-[#668084] dark:border-white/10 dark:text-white"
               >
                 {q("cancel")}
-              </button>
-              <button
+              </Button>
+              <Button
                 type="button"
                 onClick={() => {
                   setOverlapPrompt(false)
@@ -829,7 +830,7 @@ export function AgendaView({
                 className="min-h-12 flex-1 rounded-full bg-[#416e7e] font-semibold text-white"
               >
                 {q("confirmOverlap")}
-              </button>
+              </Button>
             </div>
           </div>
         </div>
@@ -878,46 +879,46 @@ export function AgendaView({
                   </p>
                 )}
               </div>
-              <button
+              <Button
                 type="button"
                 onClick={() => setDetail(null)}
                 className="flex size-11 items-center justify-center rounded-full bg-[#f1f5f3] text-xl dark:bg-white/5"
                 aria-label={common("close")}
               >
                 ×
-              </button>
+              </Button>
             </div>
             <div className="mt-6 grid grid-cols-2 gap-3">
-              <button
+              <Button
                 type="button"
                 onClick={() => editAppointment(detail)}
                 className="min-h-12 rounded-full border border-[#dce6e3] px-4 text-sm font-semibold text-[#607b80] dark:border-white/10 dark:text-white"
               >
                 {t("edit")}
-              </button>
-              <button
+              </Button>
+              <Button
                 type="button"
                 onClick={() => editAppointment(detail)}
                 className="min-h-12 rounded-full border border-[#dce6e3] px-4 text-sm font-semibold text-[#607b80] dark:border-white/10 dark:text-white"
               >
                 {t("move")}
-              </button>
+              </Button>
               {!detail.isPaid && (
-                <button
+                <Button
                   type="button"
                   onClick={() => void updateAppointment(detail, "paid")}
                   className="min-h-12 rounded-full bg-[#eaf3ed] px-4 text-sm font-semibold text-[#4d7d6a] dark:bg-white/10 dark:text-[#c6dfd0]"
                 >
                   {t("markPaid")}
-                </button>
+                </Button>
               )}
-              <button
+              <Button
                 type="button"
                 onClick={() => void updateAppointment(detail, "cancel")}
                 className="min-h-12 rounded-full border border-[#efd9d4] px-4 text-sm font-semibold text-[#a65b52] dark:border-white/10 dark:text-[#efb0a5]"
               >
                 {t("cancel")}
-              </button>
+              </Button>
             </div>
           </section>
         </div>

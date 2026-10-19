@@ -1,4 +1,5 @@
 "use client"
+import { Button } from "@/components/ui/button"
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
@@ -37,7 +38,7 @@ export function OwnerShell({ children, demo = true, isAdmin = true }: { children
         </nav>
         <div className="mt-auto space-y-3 px-2">
           <LanguageSwitcher compact />
-          <button type="button" onClick={() => setTheme(isDark ? "light" : "dark")} className="flex min-h-11 w-full items-center gap-3 rounded-xl px-3 text-sm text-[#708184] hover:bg-[#f1f5f3] dark:text-[#b5c4c5] dark:hover:bg-white/5"><span aria-hidden="true">{isDark ? "☼" : "☾"}</span>{isDark ? t("lightMode") : t("darkMode")}</button>
+          <Button type="button" onClick={() => setTheme(isDark ? "light" : "dark")} className="flex min-h-11 w-full items-center gap-3 rounded-xl px-3 text-sm text-[#708184] hover:bg-[#f1f5f3] dark:text-[#b5c4c5] dark:hover:bg-white/5"><span aria-hidden="true">{isDark ? "☼" : "☾"}</span>{isDark ? t("lightMode") : t("darkMode")}</Button>
           <div className="px-3 pt-2 text-xs text-[#879697]">{common("ownerDemo")}</div>
         </div>
       </aside>
@@ -45,7 +46,7 @@ export function OwnerShell({ children, demo = true, isAdmin = true }: { children
       <header className="sticky top-0 z-20 flex min-h-[68px] items-center justify-between border-b border-[#e1e9e7] bg-[#fbfcfb]/95 px-4 backdrop-blur-md dark:border-white/10 dark:bg-[#192c32]/95 sm:px-7 lg:ml-[250px] lg:px-10">
         <Link href="/app" aria-label={common("businessDemo")} className="text-base lg:hidden"><BrandLockup compact /></Link>
         <div className="hidden lg:block text-sm font-medium text-[#829193]">{common("businessDemo")}</div>
-        <div className="flex items-center gap-3"><div className="lg:hidden"><LanguageSwitcher compact /></div><button type="button" onClick={() => setTheme(isDark ? "light" : "dark")} aria-label={isDark ? t("lightMode") : t("darkMode")} className="flex size-11 items-center justify-center rounded-full border border-[#e1e9e7] bg-white text-lg text-[#547984] hover:bg-[#f1f5f3] dark:border-white/10 dark:bg-white/5 dark:text-[#c4d9d8]">{isDark ? "☼" : "☾"}</button></div>
+        <div className="flex items-center gap-3"><div className="lg:hidden"><LanguageSwitcher compact /></div><Button type="button" onClick={() => setTheme(isDark ? "light" : "dark")} aria-label={isDark ? t("lightMode") : t("darkMode")} className="flex size-11 items-center justify-center rounded-full border border-[#e1e9e7] bg-white text-lg text-[#547984] hover:bg-[#f1f5f3] dark:border-white/10 dark:bg-white/5 dark:text-[#c4d9d8]">{isDark ? "☼" : "☾"}</Button></div>
       </header>
       <div className="pb-24 lg:ml-[250px] lg:pb-0"><main className="mx-auto w-full max-w-[1440px] px-4 py-6 sm:px-7 sm:py-8 lg:px-10 lg:py-10">{children}</main></div>
 

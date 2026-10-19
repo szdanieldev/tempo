@@ -1,4 +1,5 @@
 "use client"
+import { Button } from "@/components/ui/button"
 
 import { useEffect, useMemo, useState } from "react"
 import { formatInTimeZone } from "date-fns-tz"
@@ -283,13 +284,13 @@ export function TeamSettings({
               placeholder={t("invitePlaceholder")}
               className="min-h-12 min-w-0 flex-1 rounded-xl border border-[#dce6e3] bg-white px-4 text-base dark:border-white/10 dark:bg-[#20373e] dark:text-white"
             />
-            <button
+            <Button
               type="submit"
               disabled={busy}
               className="min-h-12 rounded-xl bg-[#416e7e] px-5 text-sm font-semibold text-white disabled:opacity-50"
             >
               {t("invite")}
-            </button>
+            </Button>
           </div>
         </form>
       )}
@@ -390,14 +391,14 @@ export function TeamSettings({
               ))}
             </div>
           )}
-          <button
+          <Button
             type="button"
             disabled={!selectedMember || busy}
             onClick={() => void saveSchedule()}
             className="min-h-12 rounded-full bg-[#416e7e] px-6 text-sm font-semibold text-white disabled:opacity-50"
           >
             {t("saveSchedule")}
-          </button>
+          </Button>
         </>
       )}
       <div className="border-t border-[#edf1ef] pt-5 dark:border-white/10">
@@ -495,13 +496,13 @@ export function TeamSettings({
               className="min-h-12 w-full rounded-xl border border-[#dce6e3] bg-white px-4 text-base dark:border-white/10 dark:bg-[#20373e] dark:text-white"
             />
           </label>
-          <button
+          <Button
             type="submit"
             disabled={busy || !selectedMember}
             className="min-h-12 rounded-full bg-[#416e7e] px-6 text-sm font-semibold text-white disabled:opacity-50 sm:col-span-2"
           >
             {t("addTimeOff")}
-          </button>
+          </Button>
         </form>
         <div className="mt-5 space-y-2">
           {visibleTimeOff.length === 0 ? (
@@ -523,14 +524,14 @@ export function TeamSettings({
                     {item.reason ? ` · ${item.reason}` : ""}
                   </p>
                 </div>
-                <button
+                <Button
                   type="button"
                   disabled={busy}
                   onClick={() => void deleteTimeOff(item.id)}
                   className="min-h-10 shrink-0 rounded-full border border-[#efd9d4] px-4 text-sm font-semibold text-[#a65b52] disabled:opacity-50 dark:border-white/10 dark:text-[#efb0a5]"
                 >
                   {t("removeTimeOff")}
-                </button>
+                </Button>
               </div>
             ))
           )}
