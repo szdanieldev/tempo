@@ -1,29 +1,39 @@
-import { Geist, Geist_Mono } from "next/font/google"
-
-import "./globals.css"
+import type { Metadata, Viewport } from "next"
+import { NextIntlClientProvider } from "next-intl"
+import { getLocale, getMessages } from "next-intl/server"
 import { ThemeProvider } from "@/components/theme-provider"
-import { cn } from "@/lib/utils";
+import { brand } from "@/config/brand"
+import { AuthProvider } from "@/components/auth-provider"
+import { ServiceWorkerRegister } from "@/components/service-worker-register"
+import "./globals.css"
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'})
+export const metadata: Metadata = {
+  title: { default: brand.name, template: `%s · ${brand.name}` },
+  manifest: "/manifest.webmanifest",
+  appleWebApp: { capable: true, title: brand.name, statusBarStyle: "default" },
+}
 
-const fontMono = Geist_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-})
+export const viewport: Viewport = {
+  themeColor: "#527889",
+  width: "device-width",
+  initialScale: 1,
+}
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const locale = await getLocale()
+  const messages = await getMessages()
+
   return (
-    <html
-      lang="en"
-      suppressHydrationWarning
-      className={cn("antialiased", fontMono.variable, "font-sans", geist.variable)}
-    >
-      <body>
-        <ThemeProvider>{children}</ThemeProvider>
+    <html lang={locale} suppressHydrationWarning>
+      <body className="antialiased">
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <AuthProvider>
+            <ThemeProvider>
+              {children}
+              <ServiceWorkerRegister />
+            </ThemeProvider>
+          </AuthProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   )
